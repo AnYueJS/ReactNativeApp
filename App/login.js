@@ -1,9 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * Created by zhiqiang on 2017/11/1.
  */
-
 import React, { Component } from 'react';
 import {
     AppRegistry,
@@ -15,8 +12,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import IndexPage from './App/index';
-// import Root from './App/root';
+import Root from './root';
 const Login = React.createClass({
 
     pressPush: function () {
@@ -109,5 +105,3 @@ const MyNavigator = React.createClass({
         )
     }
 });
-
-AppRegistry.registerComponent('MeiXinApp', () => Login);
