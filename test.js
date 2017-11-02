@@ -8,10 +8,13 @@ import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SampleText from './SampleText';
-import MyHomeScreen from './home';
-import MyProductScreen from './product';
-import MyHouseScreen from './house';
+import MyHomeScreen from './mine/home';
 import MyAccountScreen from './account';
+import MyProductScreen from './product/productLabel';
+import MyProuctListScreen from './product/productList';
+import MyProuctDetailScreen from './product/productDetail';
+import MyHouseListScreen from './house/houseList';
+import MyHouseDetailScreen from './house/houseDetail'
 
 
 const MyNavScreen = ({ navigation, banner }) => (
@@ -47,6 +50,7 @@ const MyNotificationsSettingsScreen = ({ navigation }) => (
 );
 
 
+
 const TabNav = TabNavigator(
   {
     MainTab: {
@@ -66,7 +70,7 @@ const TabNav = TabNavigator(
       },
     },
     HouseTab: {
-      screen: MyHouseScreen,
+      screen: MyHouseListScreen,
       path: '/house',
       navigationOptions: {
         title: 'house',
@@ -104,6 +108,34 @@ const StacksOverTabs = StackNavigator({
     path: '/people/:name',
     navigationOptions: ({ navigation }) => {
       title: `${navigation.state.params.name}'s Profile!`;
+    },
+  },
+  ProductList: {
+    screen: MyProuctListScreen,
+    path: '/people/:name',
+    navigationOptions: ({ navigation }) => {
+      title: `${navigation.state.params.name}'s Profile!!`;
+    },
+  },
+  ProductDetail: {
+    screen: MyProuctDetailScreen,
+    path: '/people/:name',
+    navigationOptions: ({ navigation }) => {
+      title: `${navigation.state.params.name}'s Profile!!`;
+    },
+  },
+  HouseList: {
+    screen: MyHouseListScreen,
+    path: '/people/:name',
+    navigationOptions: ({ navigation }) => {
+      title: `${navigation.state.params.name}'s Profile!!`;
+    },
+  },
+  HouseDetail: {
+    screen: MyHouseDetailScreen,
+    path: '/people/:name',
+    navigationOptions: ({ navigation }) => {
+      title: `${navigation.state.params.name}'s Profile!!`;
     },
   },
 });
