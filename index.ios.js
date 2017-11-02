@@ -7,10 +7,6 @@
  import React from 'react';
  import { AppRegistry,View, Text, Button } from 'react-native';
  import { StackNavigator } from 'react-navigation';
+ import StacksOverTabs from './test'
 
- import App from './product/test'
- import HomeScreen from './product/test1';
- import DetailsScreen from './product/test2';
- import RootTabs from './ivew/root';
-
-AppRegistry.registerComponent('MeiXinApp', () => App);
+AppRegistry.registerComponent('MeiXinApp', () => StacksOverTabs);
