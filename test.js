@@ -14,7 +14,9 @@ import MyProductScreen from './product/productLabel';
 import MyProuctListScreen from './product/productList';
 import MyProuctDetailScreen from './product/productDetail';
 import MyHouseListScreen from './house/houseList';
-import MyHouseDetailScreen from './house/houseDetail'
+import MyHouseDetailScreen from './house/houseDetail';
+import LoginScreen from './login';
+import SignupScreen from './signup'
 
 
 const MyNavScreen = ({ navigation, banner }) => (
@@ -140,4 +142,27 @@ const StacksOverTabs = StackNavigator({
   },
 });
 
-export default StacksOverTabs;
+const LoginTabs = StackNavigator({
+  Login: {
+      screen: LoginScreen,
+      navigationOptions: {
+        header: null
+      }
+  },
+  Signup: {
+      screen: SignupScreen,
+      navigationOptions: {
+        header: null
+      }
+  },
+  App: {
+     screen: TabNav
+  }
+},
+{
+  initialRouteName: 'Login',
+  mode: 'card',
+  headerMode: 'none',
+})
+
+export default LoginTabs;
