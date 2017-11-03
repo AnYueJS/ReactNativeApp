@@ -12,10 +12,10 @@ import { Button,
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import SampleText from '../SampleText';
+import SampleText from '../../../SampleText';
 
 
-const MyProuctListScreen = ({ navigation }) => (
+const MyProuctDetailScreen = ({ navigation }) => (
   <MyNavScreen banner="Notifications Screen" navigation={navigation} />
 );
 
@@ -24,11 +24,11 @@ const MyNavScreen = ({ navigation, banner }) => (
     <SafeAreaView forceInset={{ horizontal: 'always' }}>
       <SampleText>{banner}</SampleText>
       <Button
-        onPress={() => navigation.navigate('ProductDetail', { name: 'Jordan' })}
-        title="我是产品列表页"
+        onPress={() => navigation.navigate('Profile', { name: 'Jordan' })}
+        title="我是产品详情页"
       />
     </SafeAreaView>
   </ScrollView>
 );
 
-export default MyProuctListScreen;
+export default MyProuctDetailScreen;

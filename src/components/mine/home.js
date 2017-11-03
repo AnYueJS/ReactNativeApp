@@ -13,7 +13,7 @@ import {
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import SampleText from '../SampleText';
+import SampleText from '../../../SampleText';
 
 
 const MyHomeScreen = ({ navigation }) => (

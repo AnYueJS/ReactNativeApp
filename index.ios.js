@@ -7,6 +7,6 @@
  import React from 'react';
  import { AppRegistry,View, Text, Button } from 'react-native';
  import { StackNavigator } from 'react-navigation';
- import StacksOverTabs from './test'
+ import StacksOverTabs from './src/navigation/navigation'
 
 AppRegistry.registerComponent('MeiXinApp', () => StacksOverTabs);

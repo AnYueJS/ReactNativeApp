@@ -6,23 +6,21 @@ import React from 'react';
 import { Button, ScrollView } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import SampleText from './SampleText';
-import MyHomeScreen from './mine/home';
-import MyAccountScreen from './account';
-import MyProductScreen from './product/productLabel';
-import MyProuctListScreen from './product/productList';
-import MyProuctDetailScreen from './product/productDetail';
-import MyHouseListScreen from './house/houseList';
-import MyHouseDetailScreen from './house/houseDetail';
-import LoginScreen from './login';
-import SignupScreen from './signup'
+import SampleText from '../../SampleText';
+import MyHomeScreen from '../components/mine/home';
+import MyAccountScreen from '../../account';
+import MyProductScreen from '../components/product/productLabel';
+import MyProuctListScreen from '../components/product/productList';
+import MyProuctDetailScreen from '../components/product/productDetail';
+import MyHouseListScreen from '../components/house/houseList';
+import MyHouseDetailScreen from '../components/house/houseDetail';
+import LoginScreen from '../../login';
+import SignupScreen from '../../signup'
 
 
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
     <SafeAreaView forceInset={{ horizontal: 'always' }}>
-      <SampleText>{banner}</SampleText>
       <Button
         onPress={() => navigation.navigate('Profile', { name: 'Jordan' })}
         title="Open profile screen"
@@ -50,8 +48,6 @@ const MyProfileScreen = ({ navigation }) => (
 const MyNotificationsSettingsScreen = ({ navigation }) => (
   <MyNavScreen banner="Notifications Screen" navigation={navigation} />
 );
-
-
 
 const TabNav = TabNavigator(
   {
@@ -157,12 +153,15 @@ const LoginTabs = StackNavigator({
   },
   App: {
      screen: TabNav
+  },
+  StacksOverTabs: {
+     screen: StacksOverTabs
   }
 },
 {
   initialRouteName: 'Login',
   mode: 'card',
   headerMode: 'none',
-})
+});
 
 export default LoginTabs;

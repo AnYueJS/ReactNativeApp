@@ -7,7 +7,7 @@ import { Button, ScrollView } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import SampleText from '../SampleText';
+import SampleText from '../../../SampleText';
 
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
@@ -15,14 +15,14 @@ const MyNavScreen = ({ navigation, banner }) => (
       <SampleText>{banner}</SampleText>
       <Button
         onPress={() => navigation.navigate('HouseDetail', { name: 'Jordan' })}
-        title="我是房产列表页"
+        title="我是房产详情页"
       />
     </SafeAreaView>
   </ScrollView>
 );
 
-const MyHouseListScreen = ({ navigation }) => (
+const MyHouseDetailScreen = ({ navigation }) => (
   <MyNavScreen banner="product Screen" navigation={navigation} />
 );
 
-export default MyHouseListScreen;
+export default MyHouseDetailScreen;
