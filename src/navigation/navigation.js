@@ -7,8 +7,8 @@ import { Button, ScrollView } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 
 import SampleText from '../../SampleText';
-import MyHomeScreen from '../components/mine/home';
-import MyAccountScreen from '../../account';
+import MyHomeScreen from '../components/dashboard/home';
+import MyAccountScreen from '../components/mine/account';
 import MyProductScreen from '../components/product/productLabel';
 import MyProuctListScreen from '../components/product/productList';
 import MyProuctDetailScreen from '../components/product/productDetail';

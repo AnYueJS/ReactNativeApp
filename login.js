@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   AsyncStorage,
   Platform,
@@ -12,16 +12,85 @@ import {
   Alert,
   TouchableOpacity
 } from 'react-native'
+import Storage from 'react-native-storage';
+import HostAPI from './API';
+
+
+//定义storage
+var storage = new Storage({
+  size: 1000,
+  storageBackend: AsyncStorage,
+  defaultExpires: 1000 * 3600 * 24 * 7,
+  enableCache: true,
+  sync: function(){
+    Alert.alert('凭证已失效')
+    this.props.navigation.navigate('Login');
+  }
+})
+
+//storage取值
+storage.load({
+ key: 'loginInfo',
+ autoSync: true,
+ syncInBackground: false})
+ .then(ret => {})
+ .catch(err => {
+   Alert.alert('凭证已过期,请重新登录')
+   this.props.navigation.navigate('App')
+});
+
 
 export default class Login extends React.Component {
   state = {
     isLoading: false,
-    email: null,
-    password: null
+    phone: '+86 15727303350',
+    password: '111'
   }
 
   login = () => {
-    this.props.navigation.navigate('App')
+    if(this.state.phone === ''){
+      Alert.alert("手机号码不能为空");
+      return;
+    }
+    if(this.state.password === ''){
+      Alert.alert("密码不能为空");
+      return;
+    }
+    let formData = {};
+    formData.phone = this.state.phone;
+    formData.is_management = "false";
+    formData.password = this.state.password;
+    let url = HostAPI + "/product/channel/advisorLoginByPwd";
+    var opts = {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+       },
+       body: JSON.stringify(formData)
+    }
+
+    fetch(url, opts)
+    .then((response) => response.json())
+    .then((responseData) =>{
+      if(responseData.code ==1){
+        storage.save({
+          key: "loginInfo",
+          data: {
+            "mx_token": responseData.body.mx_token,
+            "mx_secret": responseData.body.mx_secret,
+            "phone": this.state.phone
+          },
+          expires: 1000*3600*7
+        });
+      }
+
+
+      this.props.navigation.navigate('App')
+    })
+    .catch((response) =>{
+
+    })
+
   }
 
   signup = () => {
@@ -59,7 +128,7 @@ export default class Login extends React.Component {
                 placeholderTextColor={'#555'}
                 autoCapitalize={'none'}
                 autoCorrect={false}
-                onChangeText={(email) => this.setState({email})}
+                onChangeText={(phone) => this.setState({phone})}
                 maxLength={60}
                 blurOnSubmit={true}
                 keyboardType={'phone-pad'}
