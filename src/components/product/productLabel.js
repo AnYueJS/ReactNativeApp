@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import { Button,
   ScrollView ,
+    AsyncStorage,
   AppRegistry,
   StyleSheet,
   SectionList,
@@ -12,7 +13,35 @@ import { Button,
     TouchableOpacity,
   View} from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
+import Storage from 'react-native-storage';
 import HostAPI from '../../../API';
+
+
+//定义storage
+var storage = new Storage({
+    size: 1000,
+    storageBackend: AsyncStorage,
+    defaultExpires: 1000 * 3600 * 24 * 7,
+    enableCache: true,
+    sync: function(){
+        this.props.navigation.navigate('Login');
+    }
+})
+
+//storage取值
+storage.load({
+    key: 'loginInfo',
+    autoSync: true,
+    syncInBackground: false})
+    .then(ret => {
+        if(ret.mx_token!=''){
+            this.state.mx_token = ret.mx_token;
+            this.state.mx_secret = ret.mx_secret;
+        }
+    })
+    .catch(err => {
+
+    });
 
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
@@ -37,20 +66,24 @@ const MyProductScreen = ({ navigation }) => (
 class ProductLabelScreen extends Component {
     constructor(props) {
         super(props);
-        // alert("constructor");
-        this.getProductLabel;
+        this.getProductLabel();
+    }
+    state = {
+        mx_token:'',
+        mx_secret: ''
     }
     getProductLabel = () => {
         let url = HostAPI + "/big_bend/common/cms_content/info";
         var opts = {
             method: "GET",
             headers: {
+                "mx_token": this.state.mx_token,
+                "mx_secret": this.state.mx_secret,
                 'Content-Type': 'application/json;charset=UTF-8'
             },
             body: JSON.stringify({"content_key": "tags"})
         }
 
-        alert('123')
         fetch(url, opts)
             .then((response) => response.json())
             .then((responseData) =>{
