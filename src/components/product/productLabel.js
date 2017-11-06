@@ -9,8 +9,10 @@ import { Button,
   StyleSheet,
   SectionList,
   Text,
+    TouchableOpacity,
   View} from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
+import HostAPI from '../../../API';
 
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
@@ -20,6 +22,10 @@ const MyNavScreen = ({ navigation, banner }) => (
         onPress={() => navigation.navigate('ProductList', { name: 'Jordan' })}
         title="我是产品标签页"
       />
+        <TouchableOpacity
+            onPress={this.ProductLabelScreen}>
+            <Text>登录</Text>
+        </TouchableOpacity>
     </SafeAreaView>
   </ScrollView>
 );
@@ -28,16 +34,34 @@ const MyProductScreen = ({ navigation }) => (
   <MyNavScreen banner="product Screen" navigation={navigation} />
 );
 
-var contents = [
-    "1",
-    "2",
-    "3"
-]
 class ProductLabelScreen extends Component {
     constructor(props) {
         super(props);
         // alert("constructor");
-        this.state = {str: "hello"};
+        this.getProductLabel;
+    }
+    getProductLabel = () => {
+        let url = HostAPI + "/big_bend/common/cms_content/info";
+        var opts = {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            body: JSON.stringify({"content_key": "tags"})
+        }
+
+        alert('123')
+        fetch(url, opts)
+            .then((response) => response.json())
+            .then((responseData) =>{
+                if(responseData.code ==1){
+                    Alert.alert("123")
+                }
+            })
+            .catch((response) =>{
+
+            })
+
     }
     render() {
         return (

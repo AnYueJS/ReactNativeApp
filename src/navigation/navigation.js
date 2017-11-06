@@ -2,7 +2,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, ScrollView } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 
@@ -15,7 +15,6 @@ import MyHouseListScreen from '../components/house/houseList';
 import MyHouseDetailScreen from '../components/house/houseDetail';
 import LoginScreen from '../../login';
 import SignupScreen from '../../signup'
-
 
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
@@ -55,7 +54,7 @@ const TabNav = TabNavigator(
       path: '/',
       navigationOptions: {
         title: 'Welcome',
-        tabBarLabel: '首页'
+        tabBarLabel: '首页',
       },
     },
     ProductTab: {
