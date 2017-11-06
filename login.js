@@ -23,7 +23,6 @@ var storage = new Storage({
   defaultExpires: 1000 * 3600 * 24 * 7,
   enableCache: true,
   sync: function(){
-    Alert.alert('凭证已失效')
     this.props.navigation.navigate('Login');
   }
 })
@@ -33,18 +32,21 @@ storage.load({
  key: 'loginInfo',
  autoSync: true,
  syncInBackground: false})
- .then(ret => {})
+ .then(ret => {
+   if(ret.mx_token!=''){
+     // alert(ret.mx_token);
+     this.props.navigation.navigate('App')
+   }
+ })
  .catch(err => {
-   Alert.alert('凭证已过期,请重新登录')
-   this.props.navigation.navigate('App')
-});
 
+});
 
 export default class Login extends React.Component {
   state = {
     isLoading: false,
-    phone: '+86 15727303350',
-    password: '111'
+    phone: '',
+    password: ''
   }
 
   login = () => {
@@ -83,8 +85,6 @@ export default class Login extends React.Component {
           expires: 1000*3600*7
         });
       }
-
-
       this.props.navigation.navigate('App')
     })
     .catch((response) =>{

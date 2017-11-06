@@ -20,8 +20,8 @@ export default class SignupScreen extends React.Component {
     password: null
   }
 
-  login = () => {
-    this.props.navigation.navigate('App')
+  toLogin = () => {
+    this.props.navigation.navigate('Login')
   }
 
   signup = () => {
@@ -125,21 +125,16 @@ export default class SignupScreen extends React.Component {
 
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <TouchableOpacity
-              style={styles.option}>
-              <Text style={styles.optionText}>忘记密码?</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
               style={styles.option}
-              onPress={this.signup}>
-              <Text style={styles.optionText}>新建账户</Text>
+              onPress={this.toLogin}>
+              <Text style={styles.optionText}>前往登录</Text>
             </TouchableOpacity>
           </View>
 
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity
               style={styles.button}
-              onPress={this.login}>
+              onPress={this.toLogin}>
               <Text style={styles.buttonText}>注册</Text>
             </TouchableOpacity>
           </View>
@@ -175,10 +170,10 @@ const styles = StyleSheet.create({
   },
   option: {
     margin: 4,
-    paddingVertical: 12
+    paddingVertical: 12,
   },
   optionText: {
-    color: '#555',
-    fontSize: 14
+    color: 'blue',
+    fontSize: 14,
   }
 })

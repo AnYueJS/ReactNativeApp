@@ -5,8 +5,9 @@
  */
 
  import React from 'react';
- import { AppRegistry,View, Text, Button } from 'react-native';
+ import { AsyncStorage, AppRegistry,View, Text, Button } from 'react-native';
  import { StackNavigator } from 'react-navigation';
- import StacksOverTabs from './src/navigation/navigation'
+ import StacksOverTabs from './src/navigation/navigation';
+ import Storage from 'react-native-storage';
 
-AppRegistry.registerComponent('MeiXinApp', () => StacksOverTabs);
+ AppRegistry.registerComponent('MeiXinApp', () => StacksOverTabs);
