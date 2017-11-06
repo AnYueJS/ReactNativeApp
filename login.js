@@ -34,7 +34,6 @@ storage.load({
  syncInBackground: false})
  .then(ret => {
    if(ret.mx_token!=''){
-     // alert(ret.mx_token);
      this.props.navigation.navigate('App')
    }
  })

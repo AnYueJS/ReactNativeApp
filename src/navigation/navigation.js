@@ -62,7 +62,7 @@ const TabNav = TabNavigator(
       screen: MyProductScreen,
       path: '/product',
       navigationOptions: {
-        title: 'product',
+        title: '产品列表',
         tabBarLabel: '产品'
       },
     },
@@ -163,4 +163,4 @@ const LoginTabs = StackNavigator({
   headerMode: 'none',
 });
 
-export default LoginTabs;
+export default StacksOverTabs;
