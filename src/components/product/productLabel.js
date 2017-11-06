@@ -5,12 +5,11 @@
 import React, { Component } from 'react';
 import { Button,
   ScrollView ,
-    AsyncStorage,
-  AppRegistry,
+  AsyncStorage,
   StyleSheet,
   SectionList,
   Text,
-    TouchableOpacity,
+  TouchableOpacity,
   View} from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator } from 'react-navigation';
 import Storage from 'react-native-storage';
@@ -70,25 +69,26 @@ class ProductLabelScreen extends Component {
     }
     state = {
         mx_token:'',
-        mx_secret: ''
-    }
+        mx_secret: '',
+        labels:{}
+    };
     getProductLabel = () => {
-        let url = HostAPI + "/big_bend/common/cms_content/info";
+        let url = HostAPI + "/big_bend/common/cms_content/info?content_key=tags";
         var opts = {
             method: "GET",
             headers: {
                 "mx_token": this.state.mx_token,
                 "mx_secret": this.state.mx_secret,
                 'Content-Type': 'application/json;charset=UTF-8'
-            },
-            body: JSON.stringify({"content_key": "tags"})
+            }
         }
 
         fetch(url, opts)
             .then((response) => response.json())
             .then((responseData) =>{
                 if(responseData.code ==1){
-                    Alert.alert("123")
+                    alert(JSON.stringify(responseData.body.content));
+                    this.state.labels = JSON.stringify(responseData.body.content);
                 }
             })
             .catch((response) =>{
@@ -102,9 +102,7 @@ class ProductLabelScreen extends Component {
               <SectionList
                   renderItem={({item}) => <ListItem title={item.title} />}
                   renderSectionHeader={({section}) => <Header title={section.key} />}
-                  sections={[ // 不同section渲染相同类型的子组件
-
-                  ]}
+                  sections={[]}
               />
             </View>
         );
